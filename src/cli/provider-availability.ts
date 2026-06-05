@@ -3,6 +3,7 @@ import type { ProviderAvailability } from "./model-fallback-types"
 
 export function toProviderAvailability(config: InstallConfig): ProviderAvailability {
 	return {
+		hasOpenCodeFree: config.hasOpencodeZen,
 		native: {
 			claude: config.hasClaude,
 			openai: config.hasOpenAI,
@@ -21,7 +22,12 @@ export function toProviderAvailability(config: InstallConfig): ProviderAvailabil
 	}
 }
 
+export function detectOpenCodeFree(config: InstallConfig): boolean {
+	return config.hasOpencodeZen === true
+}
+
 export function isProviderAvailable(provider: string, availability: ProviderAvailability): boolean {
+	if (provider === "opencode" && availability.hasOpenCodeFree) return true
 	const mapping: Record<string, boolean> = {
 		anthropic: availability.native.claude,
 		openai: availability.native.openai,

@@ -1,6 +1,7 @@
 import type { FallbackModelObject } from "../config/schema/fallback-models"
 
 export interface ProviderAvailability {
+	hasOpenCodeFree: boolean
 	native: {
 		claude: boolean
 		openai: boolean

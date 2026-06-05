@@ -20,8 +20,8 @@ import { transformModelForProvider } from "./provider-model-id-transform"
 
 export type { GeneratedOmoConfig } from "./model-fallback-types"
 
-const ULTIMATE_FALLBACK = "opencode/gpt-5-nano"
-const SCHEMA_URL = "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json"
+const ULTIMATE_FALLBACK = "opencode/mimo-v2.5-free"
+const SCHEMA_URL = "https://raw.githubusercontent.com/nalrom/oh-my-freeagent/main/assets/oh-my-opencode.schema.json"
 
 function toFallbackModelObject(entry: FallbackEntry, provider: string): FallbackModelObject {
   return {
@@ -142,7 +142,7 @@ export function generateModelConfig(config: InstallConfig): GeneratedOmoConfig {
       } else if (avail.native.claude) {
         agentConfig = { model: "anthropic/claude-haiku-4-5" }
       } else if (avail.opencodeZen) {
-        agentConfig = { model: "opencode/gpt-5-nano" }
+        agentConfig = { model: "opencode/mimo-v2.5-free" }
       } else if (avail.opencodeGo) {
         agentConfig = { model: "opencode-go/qwen3.5-plus" }
       } else if (avail.copilot) {
@@ -153,7 +153,7 @@ export function generateModelConfig(config: InstallConfig): GeneratedOmoConfig {
           const variant = resolved.variant ?? req.variant
           agentConfig = variant ? { model: resolved.model, variant } : { model: resolved.model }
         } else {
-          agentConfig = { model: "opencode/gpt-5-nano" }
+          agentConfig = { model: "opencode/mimo-v2.5-free" }
         }
       }
       agents[role] = attachAllFallbackModels(agentConfig, req.fallbackChain, avail)

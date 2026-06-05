@@ -96,7 +96,7 @@ export function createPluginModule(overrides: Partial<PluginModuleDeps> = {}): P
   const serverPlugin: Plugin = async (input, _options): Promise<Hooks> => {
     deps.installAgentSortShim()
     deps.initConfigContext("opencode", null)
-    deps.log("[oh-my-openagent] ENTRY - plugin loading", {
+    deps.log("[oh-my-freeagent] ENTRY - plugin loading", {
       directory: input.directory,
     })
     deps.logLegacyPluginStartupWarning()
@@ -226,7 +226,7 @@ export function createPluginModule(overrides: Partial<PluginModuleDeps> = {}): P
   }
 
   return {
-    id: "oh-my-openagent",
+    id: "oh-my-freeagent",
     server: serverPlugin,
   }
 }
