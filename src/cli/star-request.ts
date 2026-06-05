@@ -2,13 +2,18 @@ import { execFile } from "node:child_process"
 import { promisify } from "node:util"
 import type { InstallPlatform } from "./types"
 
+/**
+ * Star request for GitHub repositories during installation.
+ * This project is a fork inspired by
+ * {@link https://github.com/code-yeongyu/oh-my-openagent code-yeongyu/oh-my-openagent}.
+ */
 export const STAR_REPOSITORIES = [
-  "code-yeongyu/oh-my-openagent",
+  "nalrom/oh-my-freeagent",
   "code-yeongyu/lazycodex",
 ] as const
 
 const PLATFORM_REPOSITORIES = {
-  opencode: ["code-yeongyu/oh-my-openagent"],
+  opencode: ["nalrom/oh-my-freeagent"],
   codex: STAR_REPOSITORIES,
   both: STAR_REPOSITORIES,
 } as const satisfies Record<InstallPlatform, readonly string[]>

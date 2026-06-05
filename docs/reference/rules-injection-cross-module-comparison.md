@@ -5,7 +5,7 @@ maintained out of `/Users/yeongyu/local-workspaces`:
 
 - **codex-rules** — Codex hook plugin now bundled under the OMO Codex marketplace plugin (`packages/omo-codex/plugin/components/rules`, marketplace `sisyphuslabs`, plugin `omo`). The original standalone repo was `code-yeongyu/codex-rules`, branch `main`.
 - **pi-rules** — pi-mono extension (`pi-extensions/pi-rules`, repo `code-yeongyu/pi-rules`, branch `main`).
-- **omo rules-injector** — opencode plugin path (`omo/src/hooks/rules-injector`, repo `code-yeongyu/oh-my-openagent`, branch `dev`).
+- **omo rules-injector** — opencode plugin path (`omo/src/hooks/rules-injector`, repo `nalrom/oh-my-freeagent`, branch `dev`).
 
 ## 0. Latest pushed commits
 

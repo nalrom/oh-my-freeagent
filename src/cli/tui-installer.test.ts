@@ -263,7 +263,7 @@ describe("runTuiInstaller", () => {
       }),
     ]
     const starSpy = spyOn(starRequest, "starGitHubRepositories").mockResolvedValue([
-      { repository: "code-yeongyu/oh-my-openagent", ok: true },
+      { repository: "nalrom/oh-my-freeagent", ok: true },
       { repository: "code-yeongyu/lazycodex", ok: true },
     ])
 

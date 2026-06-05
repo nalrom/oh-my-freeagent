@@ -1,4 +1,7 @@
 > [!NOTE]
+> **Fork notice**: This is a fork of [code-yeongyu/oh-my-openagent](https://github.com/code-yeongyu/oh-my-openagent), adapted to use only free models.
+
+> [!NOTE]
 > **OmO for Codex is here: try LazyCodex**
 >
 > We loved Anthropic models enough to get blocked. Now we are backing Codex.
@@ -40,11 +43,11 @@
 
 <div align="center">
 
-<a href="https://github.com/code-yeongyu/oh-my-openagent#oh-my-openagent"><img src="./.github/assets/omo-logo.png" alt="OmO" width="200" /></a>
+<a href="https://github.com/nalrom/oh-my-freeagent#oh-my-openagent"><img src="./.github/assets/omo-logo.png" alt="OmO" width="200" /></a>
 
-[![Oh My OpenAgent](./.github/assets/hero.jpg)](https://github.com/code-yeongyu/oh-my-openagent#oh-my-openagent)
+[![Oh My OpenAgent](./.github/assets/hero.jpg)](https://github.com/nalrom/oh-my-freeagent#oh-my-openagent)
 
-[![Preview](./.github/assets/omo.png)](https://github.com/code-yeongyu/oh-my-openagent#oh-my-openagent)
+[![Preview](./.github/assets/omo.png)](https://github.com/nalrom/oh-my-freeagent#oh-my-openagent)
 
 </div>
 
@@ -58,14 +61,14 @@
 
 <div align="center">
 
-[![GitHub Release](https://img.shields.io/github/v/release/code-yeongyu/oh-my-openagent?color=369eff&labelColor=black&logo=github&style=flat-square)](https://github.com/code-yeongyu/oh-my-openagent/releases)
+[![GitHub Release](https://img.shields.io/github/v/release/nalrom/oh-my-freeagent?color=369eff&labelColor=black&logo=github&style=flat-square)](https://github.com/nalrom/oh-my-freeagent/releases)
 [![npm downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fomo.dev%2Fapi%2Fnpm-downloads&style=flat-square)](https://www.npmjs.com/package/oh-my-opencode)
-[![GitHub Contributors](https://img.shields.io/github/contributors/code-yeongyu/oh-my-openagent?color=c4f042&labelColor=black&style=flat-square)](https://github.com/code-yeongyu/oh-my-openagent/graphs/contributors)
-[![GitHub Forks](https://img.shields.io/github/forks/code-yeongyu/oh-my-openagent?color=8ae8ff&labelColor=black&style=flat-square)](https://github.com/code-yeongyu/oh-my-openagent/network/members)
-[![GitHub Stars](https://img.shields.io/github/stars/code-yeongyu/oh-my-openagent?color=ffcb47&labelColor=black&style=flat-square)](https://github.com/code-yeongyu/oh-my-openagent/stargazers)
-[![GitHub Issues](https://img.shields.io/github/issues/code-yeongyu/oh-my-openagent?color=ff80eb&labelColor=black&style=flat-square)](https://github.com/code-yeongyu/oh-my-openagent/issues)
-[![License](https://img.shields.io/badge/license-SUL--1.0-white?labelColor=black&style=flat-square)](https://github.com/code-yeongyu/oh-my-openagent/blob/dev/LICENSE.md)
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/code-yeongyu/oh-my-openagent)
+[![GitHub Contributors](https://img.shields.io/github/contributors/nalrom/oh-my-freeagent?color=c4f042&labelColor=black&style=flat-square)](https://github.com/nalrom/oh-my-freeagent/graphs/contributors)
+[![GitHub Forks](https://img.shields.io/github/forks/nalrom/oh-my-freeagent?color=8ae8ff&labelColor=black&style=flat-square)](https://github.com/nalrom/oh-my-freeagent/network/members)
+[![GitHub Stars](https://img.shields.io/github/stars/nalrom/oh-my-freeagent?color=ffcb47&labelColor=black&style=flat-square)](https://github.com/nalrom/oh-my-freeagent/stargazers)
+[![GitHub Issues](https://img.shields.io/github/issues/nalrom/oh-my-freeagent?color=ff80eb&labelColor=black&style=flat-square)](https://github.com/nalrom/oh-my-freeagent/issues)
+[![License](https://img.shields.io/badge/license-SUL--1.0-white?labelColor=black&style=flat-square)](https://github.com/nalrom/oh-my-freeagent/blob/dev/LICENSE.md)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/nalrom/oh-my-freeagent)
 [![Docs](https://img.shields.io/badge/docs-omo.vibetip.help-369eff?labelColor=black&logo=readthedocs&logoColor=white&style=flat-square)](https://omo.vibetip.help/docs)
 
 [English](README.md) | [한국어](README.ko.md) | [日本語](README.ja.md) | [简体中文](README.zh-cn.md)
@@ -136,7 +139,7 @@ Paste this prompt into Claude Code, AmpCode, Cursor, or any agent:
 
 ```
 Install and configure oh-my-openagent by following the instructions here:
-https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/docs/guide/installation.md
+https://raw.githubusercontent.com/nalrom/oh-my-freeagent/refs/heads/dev/docs/guide/installation.md
 ```
 
 If you only want the **Light edition** (Codex CLI), the installer asks whether to configure Codex for autonomous full-permissions mode. You can run it yourself in one line:
@@ -154,7 +157,7 @@ For the Light edition, Bun is not required. Use `npx lazycodex-ai install` from 
 Fetch the full guide and follow it step by step:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/docs/guide/installation.md
+curl -fsSL https://raw.githubusercontent.com/nalrom/oh-my-freeagent/refs/heads/dev/docs/guide/installation.md
 ```
 
 The guide covers: platform selection, the subscription interview, provider authentication (Anthropic / Gemini / Copilot / Z.ai / OpenCode Zen), the agent-to-model matching matrix, modes (`ultrawork`, `search`, `analyze`, `team`, `hyperplan`), slash commands, the Light edition's 5 Codex components, Team Mode, and uninstall. Don't summarize it; read it end to end.
@@ -183,7 +186,7 @@ See [Privacy Policy](docs/legal/privacy-policy.md) and [Terms of Service](docs/l
 We're past the era of reading docs. Just paste this into your agent:
 
 ```
-Read this and tell me why it's not just another boilerplate: https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/README.md
+Read this and tell me why it's not just another boilerplate: https://raw.githubusercontent.com/nalrom/oh-my-freeagent/refs/heads/dev/README.md
 ```
 
 

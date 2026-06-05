@@ -1,6 +1,6 @@
 # Log file rotation — design (#3772)
 
-**Issue:** [oh-my-openagent#3772](https://github.com/code-yeongyu/oh-my-openagent/issues/3772) — `oh-my-opencode.log` grows unbounded; long-running or busy projects accumulate multi-GB log files in `%TEMP%` (Windows) and `/tmp` (Unix).
+**Issue:** [oh-my-openagent#3772](https://github.com/nalrom/oh-my-freeagent/issues/3772) — `oh-my-opencode.log` grows unbounded; long-running or busy projects accumulate multi-GB log files in `%TEMP%` (Windows) and `/tmp` (Unix).
 
 ## Problem
 

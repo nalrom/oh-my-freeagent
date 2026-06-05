@@ -186,7 +186,7 @@ describe("runCliInstaller platform branching", () => {
     // then
     const output = consoleLogMock.mock.calls.map((call) => call.join(" ")).join("\n")
     expect(result).toBe(0)
-    expect(output).not.toContain("/user/starred/code-yeongyu/oh-my-openagent")
+    expect(output).not.toContain("/user/starred/nalrom/oh-my-freeagent")
     expect(output).not.toContain("/user/starred/code-yeongyu/lazycodex")
   })
 

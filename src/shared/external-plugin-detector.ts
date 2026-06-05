@@ -31,8 +31,8 @@ const KNOWN_SKILL_PLUGINS = [
 const OMO_PACKAGE_PLUGINS = [
   "oh-my-opencode",
   "oh-my-openagent",
-  "@code-yeongyu/oh-my-opencode",
-  "@code-yeongyu/oh-my-openagent",
+  "@nalrom/oh-my-freeagent",
+  "@nalrom/oh-my-freeagent",
 ]
 
 function matchesKnownPlugin(entry: string, knownPlugins: readonly string[]): string | null {

@@ -81,7 +81,7 @@ export async function HeroSection(): Promise<JSX.Element> {
             </Button>
           </Link>
           <Link
-            href="https://github.com/code-yeongyu/oh-my-openagent"
+            href="https://github.com/nalrom/oh-my-freeagent"
             target="_blank"
             rel="noopener noreferrer"
           >

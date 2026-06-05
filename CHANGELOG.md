@@ -1,5 +1,7 @@
 # Changelog
 
+> **Fork notice**: This changelog documents the history of `oh-my-openagent` (originally by [code-yeongyu](https://github.com/code-yeongyu)) and its fork [`nalrom/oh-my-freeagent`](https://github.com/nalrom/oh-my-freeagent). All releases up to v4.2.x belong to the original project.
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),

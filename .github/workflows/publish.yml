@@ -97,7 +97,7 @@ jobs:
 
   preflight-trust:
     runs-on: ubuntu-latest
-    if: github.repository == 'code-yeongyu/oh-my-openagent'
+    if: github.repository == 'nalrom/oh-my-freeagent'
     permissions:
       id-token: write
       contents: read
@@ -114,7 +114,7 @@ jobs:
 
       - name: Verify trusted publisher for release packages
         env:
-          REPO: code-yeongyu/oh-my-openagent
+          REPO: nalrom/oh-my-freeagent
           WORKFLOW_FILE: publish.yml
           PUBLISH_LAZYCODEX: ${{ inputs.publish_lazycodex }}
         run: |
@@ -230,7 +230,7 @@ jobs:
     needs: [test, typecheck, preflight-trust, release-metadata, publish-platform]
     if: >-
       always() &&
-      github.repository == 'code-yeongyu/oh-my-openagent' &&
+      github.repository == 'nalrom/oh-my-freeagent' &&
       needs.test.result == 'success' &&
       needs.typecheck.result == 'success' &&
       needs.preflight-trust.result == 'success' &&
@@ -498,7 +498,7 @@ jobs:
     needs: [test, typecheck, preflight-trust, release-metadata]
     if: >-
       always() &&
-      github.repository == 'code-yeongyu/oh-my-openagent' &&
+      github.repository == 'nalrom/oh-my-freeagent' &&
       inputs.skip_platform != true &&
       needs.test.result == 'success' &&
       needs.typecheck.result == 'success' &&

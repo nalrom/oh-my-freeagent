@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Please file source-level LazyCodex work in [oh-my-openagent](https://github.com/code-yeongyu/oh-my-openagent), where `packages/omo-codex` lives.
+        Please file source-level LazyCodex work in [oh-my-openagent](https://github.com/nalrom/oh-my-freeagent), where `packages/omo-codex` lives.
 
   - type: textarea
     id: description

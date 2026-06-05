@@ -4,13 +4,13 @@ import { STAR_REPOSITORIES, formatGitHubStarCommand, starGitHubRepositories } fr
 describe("star-request", () => {
   test("formats the legacy GitHub CLI command for manual fallback output", () => {
     // given
-    const repository = "code-yeongyu/oh-my-openagent"
+    const repository = "nalrom/oh-my-freeagent"
 
     // when
     const command = formatGitHubStarCommand(repository)
 
     // then
-    expect(command).toBe("gh api --silent --method PUT /user/starred/code-yeongyu/oh-my-openagent >/dev/null 2>&1 || true")
+    expect(command).toBe("gh api --silent --method PUT /user/starred/nalrom/oh-my-freeagent >/dev/null 2>&1 || true")
   })
 
   test("stars only the OpenCode repository for opencode platform", async () => {
@@ -23,8 +23,8 @@ describe("star-request", () => {
     })
 
     // then
-    expect(starred).toEqual(["code-yeongyu/oh-my-openagent"])
-    expect(results).toEqual([{ repository: "code-yeongyu/oh-my-openagent", ok: true }])
+    expect(starred).toEqual(["nalrom/oh-my-freeagent"])
+    expect(results).toEqual([{ repository: "nalrom/oh-my-freeagent", ok: true }])
   })
 
   test("stars both repositories for codex platform (lazycodex is built on oh-my-openagent)", async () => {
@@ -37,9 +37,9 @@ describe("star-request", () => {
     })
 
     // then
-    expect(starred).toEqual(["code-yeongyu/oh-my-openagent", "code-yeongyu/lazycodex"])
+    expect(starred).toEqual(["nalrom/oh-my-freeagent", "code-yeongyu/lazycodex"])
     expect(results).toEqual([
-      { repository: "code-yeongyu/oh-my-openagent", ok: true },
+      { repository: "nalrom/oh-my-freeagent", ok: true },
       { repository: "code-yeongyu/lazycodex", ok: true },
     ])
   })
@@ -67,7 +67,7 @@ describe("star-request", () => {
 
     // then
     expect(results).toEqual([
-      { repository: "code-yeongyu/oh-my-openagent", ok: true },
+      { repository: "nalrom/oh-my-freeagent", ok: true },
       { repository: "code-yeongyu/lazycodex", ok: false, error: "gh auth missing" },
     ])
   })
