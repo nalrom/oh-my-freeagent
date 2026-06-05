@@ -1,0 +1,23 @@
+{
+  "name": "oh-my-freeagent",
+  "description": "Free specialized agents for OpenCode — no API keys, no credit cards, just free AI.",
+  "version": "1.0.0",
+  "agents": {
+    "oracle": "deepseek-v4-flash-free",
+    "explore": "mimo-v2.5-free",
+    "librarian": "minimax-m3-free",
+    "metis": "deepseek-v4-flash-free",
+    "momus": "deepseek-v4-flash-free",
+    "sisyphus-junior": "deepseek-v4-flash-free",
+    "multimodal-looker": "mimo-v2.5-free"
+  },
+  "categories": {
+    "code": "deepseek-v4-flash-free",
+    "architect": "deepseek-v4-flash-free",
+    "debug": "deepseek-v4-flash-free",
+    "review": "deepseek-v4-flash-free",
+    "explore": "deepseek-v4-flash-free",
+    "visual": "deepseek-v4-flash-free",
+    "writing": "mimo-v2.5-free"
+  }
+}

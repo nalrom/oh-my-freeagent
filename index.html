@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>oh-my-freeagent — Free AI Agents for OpenCode</title>
+<style>
+/* =============================================
+   oh-my-freeagent — Design System
+   ============================================= */
+:root {
+  --bg: #0a0a1a;
+  --bg-card: #12122e;
+  --bg-elevated: #1a1a3e;
+  --bg-code: #0d0d22;
+  --gradient-1: #7c3aed;
+  --gradient-2: #06b6d4;
+  --accent: #22d3ee;
+  --accent-dim: #0891b2;
+  --accent-glow: rgba(34, 211, 238, 0.15);
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --border: #1e293b;
+  --border-light: #334155;
+  --radius: 16px;
+  --radius-sm: 8px;
+  --shadow: 0 8px 32px rgba(0,0,0,0.4);
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'Courier New', Courier, monospace;
+  --max-w: 1120px;
+}
+
+/* =============================================
+   Reset & Base
+   ============================================= */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{
+  font-family:var(--font-sans);
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* =============================================
+   Scrollbar
+   ============================================= */
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border-light);border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:var(--text-dim)}
+
+/* =============================================
+   Noise Overlay
+   ============================================= */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  pointer-events:none;
+  opacity:0.03;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat:repeat;
+  background-size:256px 256px;
+}
+
+/* =============================================
+   Container
+   ============================================= */
+.container{max-width:var(--max-w);margin:0 auto;padding:0 24px}
+
+/* =============================================
+   Nav
+   ============================================= */
+nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:1000;
+  padding:16px 0;
+  background:rgba(10,10,26,0.8);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+nav .container{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.nav-logo{
+  font-family:var(--font-mono);
+  font-size:1.1rem;
+  font-weight:700;
+  background:linear-gradient(135deg,var(--gradient-1),var(--gradient-2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.nav-links{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.nav-links a{
+  color:var(--text-muted);
+  text-decoration:none;
+  font-size:0.85rem;
+  padding:6px 14px;
+  border-radius:999px;
+  transition:all 0.3s;
+  font-family:var(--font-sans);
+}
+.nav-links a:hover{
+  color:var(--text);
+  background:var(--accent-glow);
+}
+
+/* =============================================
+   Sections Common
+   ============================================= */
+section{padding:100px 0;position:relative}
+.section-label{
+  font-family:var(--font-mono);
+  font-size:0.75rem;
+  text-transform:uppercase;
+  letter-spacing:3px;
+  color:var(--accent);
+  margin-bottom:16px;
+}
+.section-title{
+  font-family:var(--font-serif);
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:700;
+  line-height:1.2;
+  margin-bottom:24px;
+  color:var(--text);
+}
+.section-sub{
+  color:var(--text-muted);
+  font-size:1.1rem;
+  max-width:640px;
+  line-height:1.8;
+}
+
+/* =============================================
+   Hero
+   ============================================= */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+  padding-top:80px;
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  width:600px;
+  height:600px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(124,58,237,0.12),transparent 70%);
+  top:-200px;
+  right:-200px;
+  animation:heroGlow 8s ease-in-out infinite alternate;
+}
+.hero::after{
+  content:'';
+  position:absolute;
+  width:500px;
+  height:500px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(6,182,212,0.1),transparent 70%);
+  bottom:-200px;
+  left:-200px;
+  animation:heroGlow 10s ease-in-out infinite alternate-reverse;
+}
+@keyframes heroGlow{
+  0%{transform:translate(0,0) scale(1)}
+  100%{transform:translate(60px,40px) scale(1.15)}
+}
+
+/* floating orbs */
+.hero-orb{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(80px);
+  pointer-events:none;
+  z-index:0;
+}
+.hero-orb--1{
+  width:300px;height:300px;
+  background:rgba(124,58,237,0.08);
+  top:10%;left:5%;
+  animation:floatOrb 14s ease-in-out infinite;
+}
+.hero-orb--2{
+  width:200px;height:200px;
+  background:rgba(6,182,212,0.06);
+  bottom:20%;right:10%;
+  animation:floatOrb 12s ease-in-out infinite reverse;
+}
+@keyframes floatOrb{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(30px,-30px) scale(1.1)}
+  66%{transform:translate(-20px,20px) scale(0.95)}
+}
+
+.hero .container{
+  position:relative;
+  z-index:1;
+  text-align:center;
+}
+
+.hero-badge{
+  display:inline-block;
+  padding:6px 20px;
+  border-radius:999px;
+  border:1px solid rgba(34,211,238,0.25);
+  background:rgba(34,211,238,0.06);
+  font-size:0.8rem;
+  color:var(--accent);
+  font-family:var(--font-mono);
+  letter-spacing:1px;
+  margin-bottom:32px;
+  animation:badgeIn 0.8s ease-out forwards;
+  opacity:0;
+}
+@keyframes badgeIn{
+  0%{opacity:0;transform:translateY(10px)}
+  100%{opacity:1;transform:translateY(0)}
+}
+
+.hero h1{
+  font-family:var(--font-serif);
+  font-size:clamp(3rem,8vw,6rem);
+  font-weight:900;
+  line-height:1.05;
+  margin-bottom:20px;
+  animation:heroTitle 1s ease-out forwards;
+  opacity:0;
+}
+@keyframes heroTitle{
+  0%{opacity:0;transform:translateY(30px)}
+  100%{opacity:1;transform:translateY(0)}
+}
+.hero h1 .glow{
+  background:linear-gradient(135deg,var(--gradient-1),var(--gradient-2),#a78bfa,var(--gradient-2));
+  background-size:300% 300%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:gradientShift 4s ease-in-out infinite;
+  filter:drop-shadow(0 0 40px rgba(124,58,237,0.3));
+}
+@keyframes gradientShift{
+  0%,100%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+}
+
+.hero-sub{
+  font-size:clamp(1.1rem,2vw,1.5rem);
+  color:var(--text);
+  font-weight:500;
+  margin-bottom:12px;
+  animation:fadeUp 0.8s 0.3s ease-out forwards;
+  opacity:0;
+}
+@keyframes fadeUp{
+  0%{opacity:0;transform:translateY(20px)}
+  100%{opacity:1;transform:translateY(0)}
+}
+
+.hero-tagline{
+  font-size:1.05rem;
+  color:var(--text-muted);
+  margin-bottom:40px;
+  font-family:var(--font-mono);
+  letter-spacing:1px;
+  animation:fadeUp 0.8s 0.5s ease-out forwards;
+  opacity:0;
+}
+
+.hero-cta{
+  display:flex;
+  gap:16px;
+  justify-content:center;
+  flex-wrap:wrap;
+  animation:fadeUp 0.8s 0.7s ease-out forwards;
+  opacity:0;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:14px 32px;
+  border-radius:999px;
+  font-size:0.95rem;
+  font-weight:600;
+  text-decoration:none;
+  transition:all 0.3s ease;
+  cursor:pointer;
+  border:none;
+  font-family:var(--font-sans);
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--gradient-1),var(--gradient-2));
+  color:#fff;
+  box-shadow:0 4px 24px rgba(124,58,237,0.3);
+}
+.btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 32px rgba(124,58,237,0.45);
+}
+.btn-secondary{
+  background:transparent;
+  color:var(--text);
+  border:1px solid var(--border-light);
+}
+.btn-secondary:hover{
+  border-color:var(--accent);
+  background:var(--accent-glow);
+  transform:translateY(-2px);
+}
+
+.hero-scroll{
+  margin-top:60px;
+  animation:bounce 2s ease-in-out infinite;
+  animation-delay:1.2s;
+  opacity:0.4;
+}
+@keyframes bounce{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(8px)}
+}
+.hero-scroll svg{display:block;margin:0 auto}
+
+/* =============================================
+   Problem Section
+   ============================================= */
+.problem{
+  background:linear-gradient(180deg,var(--bg) 0%,rgba(18,18,46,0.5) 100%);
+}
+.problem-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:64px;
+  align-items:center;
+}
+.problem-visual{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.problem-quote{
+  font-family:var(--font-serif);
+  font-size:clamp(1.6rem,3vw,2.4rem);
+  font-weight:700;
+  line-height:1.3;
+  padding:32px 40px;
+  background:var(--bg-card);
+  border-left:4px solid var(--gradient-1);
+  border-radius:0 var(--radius) var(--radius) 0;
+  position:relative;
+}
+.problem-quote::before{
+  content:'\201C';
+  position:absolute;
+  top:-10px;
+  left:12px;
+  font-size:4rem;
+  color:var(--gradient-1);
+  font-family:var(--font-serif);
+  line-height:1;
+  opacity:0.4;
+}
+.problem-text p{
+  color:var(--text-muted);
+  font-size:1.05rem;
+  margin-bottom:16px;
+}
+.problem-text p:last-child{margin-bottom:0}
+
+/* =============================================
+   Models Section
+   ============================================= */
+.models-header{text-align:center;margin-bottom:56px}
+.models-header .section-sub{margin:0 auto}
+.models-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+
+.model-card{
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:32px 24px;
+  text-align:center;
+  transition:all 0.4s cubic-bezier(0.22,1,0.36,1);
+  position:relative;
+  overflow:hidden;
+  opacity:0;
+  transform:translateY(30px);
+}
+.model-card.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+.model-card:hover{
+  transform:translateY(-8px);
+  border-color:var(--accent);
+  box-shadow:0 12px 48px rgba(34,211,238,0.08);
+}
+.model-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:3px;
+  background:linear-gradient(90deg,var(--gradient-1),var(--gradient-2));
+  opacity:0;
+  transition:opacity 0.4s;
+}
+.model-card:hover::before{opacity:1}
+
+.model-icon{
+  width:56px;
+  height:56px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 20px;
+  font-size:1.4rem;
+  font-weight:700;
+  font-family:var(--font-mono);
+  color:#fff;
+}
+.model-icon--purple{background:linear-gradient(135deg,#7c3aed,#6d28d9)}
+.model-icon--teal{background:linear-gradient(135deg,#06b6d4,#0891b2)}
+.model-icon--emerald{background:linear-gradient(135deg,#10b981,#059669)}
+.model-icon--amber{background:linear-gradient(135deg,#f59e0b,#d97706)}
+
+.model-card h3{
+  font-family:var(--font-mono);
+  font-size:1rem;
+  margin-bottom:4px;
+  color:var(--text);
+}
+.model-card .model-ver{
+  font-size:0.75rem;
+  color:var(--text-dim);
+  font-family:var(--font-mono);
+  margin-bottom:12px;
+}
+.model-card p{
+  color:var(--text-muted);
+  font-size:0.85rem;
+  line-height:1.6;
+}
+.model-tag{
+  display:inline-block;
+  margin-top:16px;
+  padding:4px 12px;
+  border-radius:999px;
+  font-size:0.7rem;
+  font-family:var(--font-mono);
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+.model-tag--primary{background:rgba(124,58,237,0.12);color:#a78bfa;border:1px solid rgba(124,58,237,0.2)}
+.model-tag--light{background:rgba(6,182,212,0.12);color:#67e8f9;border:1px solid rgba(6,182,212,0.2)}
+.model-tag--eco{background:rgba(16,185,129,0.12);color:#6ee7b7;border:1px solid rgba(16,185,129,0.2)}
+.model-tag--stealth{background:rgba(245,158,11,0.12);color:#fcd34d;border:1px solid rgba(245,158,11,0.2)}
+
+/* =============================================
+   Features
+   ============================================= */
+.features{
+  background:linear-gradient(180deg,rgba(18,18,46,0.3) 0%,var(--bg) 100%);
+}
+.features-header{text-align:center;margin-bottom:56px}
+.features-header .section-sub{margin:0 auto}
+.features-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+.feature-card{
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:32px 24px;
+  text-align:center;
+  transition:all 0.4s ease;
+  opacity:0;
+  transform:translateY(30px);
+}
+.feature-card.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+.feature-card:hover{
+  border-color:var(--gradient-2);
+  transform:translateY(-4px) !important;
+}
+.feature-icon{
+  width:48px;height:48px;
+  border-radius:12px;
+  margin:0 auto 20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.4rem;
+  background:var(--accent-glow);
+  color:var(--accent);
+}
+.feature-card h3{
+  font-size:1.05rem;
+  margin-bottom:8px;
+  color:var(--text);
+}
+.feature-card p{
+  color:var(--text-muted);
+  font-size:0.85rem;
+  line-height:1.6;
+}
+
+/* =============================================
+   How To
+   ============================================= */
+.how-header{text-align:center;margin-bottom:56px}
+.how-header .section-sub{margin:0 auto}
+.how-steps{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:32px;
+  counter-reset:step;
+}
+.how-step{
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:36px 28px;
+  position:relative;
+  transition:all 0.4s ease;
+  opacity:0;
+  transform:translateY(30px);
+}
+.how-step.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+.how-step:hover{
+  border-color:var(--accent);
+  transform:translateY(-4px) !important;
+}
+.how-step::before{
+  counter-increment:step;
+  content:counter(step);
+  position:absolute;
+  top:-14px;
+  left:24px;
+  width:32px;height:32px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--gradient-1),var(--gradient-2));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:0.85rem;
+  font-weight:700;
+  color:#fff;
+  font-family:var(--font-mono);
+}
+.how-step h3{
+  font-size:1.1rem;
+  margin-bottom:8px;
+  color:var(--text);
+  margin-top:8px;
+}
+.how-step p{
+  color:var(--text-muted);
+  font-size:0.9rem;
+  line-height:1.6;
+}
+.how-step code{
+  background:var(--bg-code);
+  padding:2px 8px;
+  border-radius:4px;
+  font-family:var(--font-mono);
+  font-size:0.85rem;
+  color:var(--accent);
+}
+
+/* =============================================
+   Agents Table
+   ============================================= */
+.table-header{text-align:center;margin-bottom:48px}
+.table-header .section-sub{margin:0 auto}
+.table-wrap{
+  overflow-x:auto;
+  border-radius:var(--radius);
+  border:1px solid var(--border);
+  background:var(--bg-card);
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:0.9rem;
+}
+thead{
+  background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(6,182,212,0.08));
+}
+th{
+  text-align:left;
+  padding:16px 20px;
+  font-family:var(--font-mono);
+  font-size:0.75rem;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  color:var(--accent);
+  font-weight:600;
+  border-bottom:1px solid var(--border);
+}
+td{
+  padding:14px 20px;
+  border-bottom:1px solid var(--border);
+  color:var(--text-muted);
+}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(34,211,238,0.03)}
+td:first-child{font-family:var(--font-mono);color:var(--text);font-weight:500}
+.model-badge{
+  display:inline-block;
+  padding:3px 12px;
+  border-radius:999px;
+  font-size:0.75rem;
+  font-family:var(--font-mono);
+  background:rgba(6,182,212,0.1);
+  color:var(--accent);
+  border:1px solid rgba(6,182,212,0.15);
+  white-space:nowrap;
+}
+.model-badge--purple{background:rgba(124,58,237,0.1);color:#a78bfa;border-color:rgba(124,58,237,0.2)}
+.model-badge--green{background:rgba(16,185,129,0.1);color:#6ee7b7;border-color:rgba(16,185,129,0.2)}
+
+.table-caption{
+  text-align:center;
+  margin-top:20px;
+  font-size:0.85rem;
+  color:var(--text-dim);
+}
+.table-caption a{
+  color:var(--accent);
+  text-decoration:none;
+}
+.table-caption a:hover{text-decoration:underline}
+
+/* =============================================
+   FAQ
+   ============================================= */
+.faq{
+  background:linear-gradient(180deg,var(--bg) 0%,rgba(18,18,46,0.3) 100%);
+}
+.faq-header{text-align:center;margin-bottom:56px}
+.faq-header .section-sub{margin:0 auto}
+.faq-list{max-width:720px;margin:0 auto}
+.faq-item{
+  border-bottom:1px solid var(--border);
+  opacity:0;
+  transform:translateY(20px);
+}
+.faq-item.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+.faq-q{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:20px 0;
+  background:none;
+  border:none;
+  color:var(--text);
+  font-size:1rem;
+  font-weight:600;
+  cursor:pointer;
+  text-align:left;
+  font-family:var(--font-sans);
+  transition:color 0.3s;
+}
+.faq-q:hover{color:var(--accent)}
+.faq-q .faq-icon{
+  flex-shrink:0;
+  width:24px;height:24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:var(--accent-glow);
+  color:var(--accent);
+  font-size:0.85rem;
+  transition:transform 0.3s;
+  font-family:var(--font-mono);
+}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.4s ease, padding 0.4s ease;
+  padding:0;
+  color:var(--text-muted);
+  line-height:1.8;
+  font-size:0.95rem;
+}
+.faq-item.open .faq-a{
+  max-height:300px;
+  padding:0 0 20px;
+}
+
+/* =============================================
+   Footer
+   ============================================= */
+footer{
+  padding:60px 0 40px;
+  border-top:1px solid var(--border);
+  text-align:center;
+}
+footer .footer-big{
+  font-family:var(--font-serif);
+  font-size:1.4rem;
+  color:var(--text);
+  margin-bottom:12px;
+}
+footer .footer-big span{
+  background:linear-gradient(135deg,var(--gradient-1),var(--gradient-2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+footer p{
+  color:var(--text-dim);
+  font-size:0.85rem;
+  margin-bottom:8px;
+}
+footer .footer-links{
+  display:flex;
+  justify-content:center;
+  gap:24px;
+  margin-top:20px;
+  flex-wrap:wrap;
+}
+footer .footer-links a{
+  color:var(--text-muted);
+  text-decoration:none;
+  font-size:0.85rem;
+  transition:color 0.3s;
+}
+footer .footer-links a:hover{color:var(--accent)}
+
+/* =============================================
+   Responsive
+   ============================================= */
+@media(max-width:1024px){
+  .models-grid{grid-template-columns:repeat(2,1fr)}
+  .features-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .problem-grid{grid-template-columns:1fr;gap:32px}
+  .how-steps{grid-template-columns:1fr}
+  section{padding:64px 0}
+  .hero h1{font-size:clamp(2.2rem,10vw,3.5rem)}
+  .models-grid{grid-template-columns:1fr 1fr}
+  .features-grid{grid-template-columns:1fr 1fr}
+  .nav-links a{font-size:0.78rem;padding:4px 10px}
+}
+@media(max-width:480px){
+  .models-grid{grid-template-columns:1fr}
+  .features-grid{grid-template-columns:1fr}
+  .hero-cta{flex-direction:column;align-items:center}
+  .btn{width:100%;justify-content:center}
+  table{font-size:0.8rem}
+  th,td{padding:10px 12px}
+}
+</style>
+</head>
+<body>
+
+<!-- ======== NAV ======== -->
+<nav>
+  <div class="container">
+    <span class="nav-logo">~/$ oh-my-freeagent</span>
+    <div class="nav-links">
+      <a href="#models">Models</a>
+      <a href="#features">Features</a>
+      <a href="#how">How-To</a>
+      <a href="#agents">Agents</a>
+      <a href="#faq">FAQ</a>
+      <a href="404.html" style="color:var(--accent);border:1px solid rgba(34,211,238,0.2)">404</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ======== HERO ======== -->
+<section class="hero" id="home">
+  <div class="hero-orb hero-orb--1"></div>
+  <div class="hero-orb hero-orb--2"></div>
+  <div class="container">
+    <div class="hero-badge">✦ v1.0 — now available</div>
+    <h1><span class="glow">oh-my-freeagent</span></h1>
+    <p class="hero-sub">Free Specialized Agents for OpenCode</p>
+    <p class="hero-tagline">No API keys. No credit cards. Just free AI.</p>
+    <div class="hero-cta">
+      <a href="#how" class="btn btn-primary">↓ Get Started</a>
+      <a href="#models" class="btn btn-secondary">Explore Models</a>
+    </div>
+    <div class="hero-scroll">
+      <svg width="24" height="36" viewBox="0 0 24 36" fill="none" stroke="rgba(226,232,240,0.4)" stroke-width="2">
+        <rect x="2" y="2" width="20" height="32" rx="10"/>
+        <circle cx="12" cy="12" r="3" fill="rgba(226,232,240,0.4)"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ======== PROBLEM ======== -->
+<section class="problem" id="problem">
+  <div class="container">
+    <div class="problem-grid">
+      <div class="problem-text">
+        <div class="section-label">The Problem</div>
+        <h2 class="section-title">AI Shouldn't Be a Luxury</h2>
+        <p>Every day, talented developers are locked out of AI-powered tools because the gatekeepers demand credit cards, subscriptions, and API billing tiers. You shouldn't need a platinum credit card to use artificial intelligence.</p>
+        <p>oh-my-freeagent is built on a simple belief: <strong>AI should be free for everyone</strong>. No billing forms, no usage tiers, no "enterprise" upsells. Just working AI agents that run on genuinely free models.</p>
+        <p>We're not a trial. We're not a freemium. We're free, period.</p>
+      </div>
+      <div class="problem-visual">
+        <div class="problem-quote">
+          You shouldn't need a platinum credit card to use AI.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== MODELS ======== -->
+<section class="models" id="models">
+  <div class="container">
+    <div class="models-header">
+      <div class="section-label">Models</div>
+      <h2 class="section-title">Four Free Models, One Stack</h2>
+      <p class="section-sub">Each model is carefully chosen for its strengths — no dead weight, no paid upsells, just purpose-built free AI.</p>
+    </div>
+    <div class="models-grid">
+      <div class="model-card" data-delay="0">
+        <div class="model-icon model-icon--purple">D</div>
+        <h3>deepseek-v4-flash-free</h3>
+        <div class="model-ver">primary workhorse</div>
+        <p>Your daily driver. Handles code generation, reasoning, debugging, and complex tasks at speed.</p>
+        <span class="model-tag model-tag--primary">Workhorse</span>
+      </div>
+      <div class="model-card" data-delay="100">
+        <div class="model-icon model-icon--teal">M</div>
+        <h3>mimo-v2.5-free</h3>
+        <div class="model-ver">lightweight tasks</div>
+        <p>Lean and fast. Perfect for writing, exploration, and lighter agent workloads.</p>
+        <span class="model-tag model-tag--light">Lightweight</span>
+      </div>
+      <div class="model-card" data-delay="200">
+        <div class="model-icon model-icon--emerald">M3</div>
+        <h3>minimax-m3-free</h3>
+        <div class="model-ver">research / librarian</div>
+        <p>Deep context specialist. Built for research, documentation mining, and information retrieval.</p>
+        <span class="model-tag model-tag--eco">Researcher</span>
+      </div>
+      <div class="model-card" data-delay="300">
+        <div class="model-icon model-icon--amber">BP</div>
+        <h3>big-pickle</h3>
+        <div class="model-ver">stealth fallback</div>
+        <p>The quiet one. A reliable fallback when you need something that just works — no questions asked.</p>
+        <span class="model-tag model-tag--stealth">Stealth</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== FEATURES ======== -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="features-header">
+      <div class="section-label">Features</div>
+      <h2 class="section-title">Everything You Need, Nothing You Don't</h2>
+      <p class="section-sub">No bloated dashboards, no metered billing — just agents that work.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card" data-delay="0">
+        <div class="feature-icon">0</div>
+        <h3>Zero Cost</h3>
+        <p>No API keys. No credit cards. No usage limits. Every agent runs on genuinely free models — not a trial, not a freemium.</p>
+      </div>
+      <div class="feature-card" data-delay="100">
+        <div class="feature-icon">↻</div>
+        <h3>Drop-in Replacement</h3>
+        <p>Works exactly like oh-my-openagent. Same interface, same workflows — just zero cost under the hood.</p>
+      </div>
+      <div class="feature-card" data-delay="200">
+        <div class="feature-icon">◆</div>
+        <h3>All Agents Working</h3>
+        <p>Oracle, explore, librarian, metis, momus, sisyphus-junior, multimodal-looker — every agent mapped to a free model.</p>
+      </div>
+      <div class="feature-card" data-delay="300">
+        <div class="feature-icon">&#x3C;/&#x3E;</div>
+        <h3>Open Source</h3>
+        <p>Built for the community. Transparent, auditable, and free to extend. AI infrastructure as a public good.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== HOW TO USE ======== -->
+<section class="how" id="how">
+  <div class="container">
+    <div class="how-header">
+      <div class="section-label">Quick Start</div>
+      <h2 class="section-title">3 Steps to Free AI</h2>
+      <p class="section-sub">From zero to running agents in under a minute.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step" data-delay="0">
+        <h3>Download the config</h3>
+        <p>Grab the <code>oh-my-freeagent.json</code> file and drop it into your OpenCode packages directory.</p>
+      </div>
+      <div class="how-step" data-delay="150">
+        <h3>Restart OpenCode</h3>
+        <p>That's it. No package managers, no dependency hell, no npm install --save-dev rabbit holes.</p>
+      </div>
+      <div class="how-step" data-delay="300">
+        <h3>You're done.</h3>
+        <p>Every agent now routes through free models. Start coding, researching, and building — with zero API costs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== AGENTS TABLE ======== -->
+<section class="table-section" id="agents">
+  <div class="container">
+    <div class="table-header">
+      <div class="section-label">Agent Mapping</div>
+      <h2 class="section-title">Every Agent, Mapped to Free</h2>
+      <p class="section-sub">No agent left behind. Every specialized role is powered by a free model.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Agent</th>
+            <th>Role</th>
+            <th>Free Model</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>oracle</td><td>Deep code analysis &amp; architecture review</td><td><span class="model-badge">deepseek-v4-flash-free</span></td></tr>
+          <tr><td>explore</td><td>File system &amp; context exploration</td><td><span class="model-badge model-badge--green">mimo-v2.5-free</span></td></tr>
+          <tr><td>librarian</td><td>Documentation &amp; knowledge retrieval</td><td><span class="model-badge model-badge--green">minimax-m3-free</span></td></tr>
+          <tr><td>metis</td><td>Strategic planning &amp; task decomposition</td><td><span class="model-badge">deepseek-v4-flash-free</span></td></tr>
+          <tr><td>momus</td><td>Quality assurance &amp; adversarial testing</td><td><span class="model-badge">deepseek-v4-flash-free</span></td></tr>
+          <tr><td>sisyphus-junior</td><td>Task execution &amp; implementation</td><td><span class="model-badge">deepseek-v4-flash-free</span></td></tr>
+          <tr><td>multimodal-looker</td><td>Vision &amp; media analysis</td><td><span class="model-badge model-badge--green">mimo-v2.5-free</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-caption">
+      Categories also overridden: code, architect, debug, review, explore, visual → <span class="model-badge">deepseek-v4-flash-free</span> &nbsp;|&nbsp; writing → <span class="model-badge model-badge--green">mimo-v2.5-free</span><br>
+      <small>Download: <a href="oh-my-freeagent.json">oh-my-freeagent.json</a></small>
+    </div>
+  </div>
+</section>
+
+<!-- ======== FAQ ======== -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="faq-header">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">Questions? We've Got Answers.</h2>
+      <p class="section-sub">The fine print is simple because there is no fine print.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item" data-delay="0">
+        <button class="faq-q">
+          Is oh-my-freeagent <em>really</em> free?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Yes. Not a trial, not a limited-time offer, not "free for the first 1000 tokens." Every model we use is genuinely free to access through OpenCode. There is no billing system because there is nothing to bill.</div>
+      </div>
+      <div class="faq-item" data-delay="100">
+        <button class="faq-q">
+          What's the difference from oh-my-openagent?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">oh-my-openagent is the original — a powerful multi-agent system for OpenCode. oh-my-freeagent is a configuration overlay that swaps all model assignments to free models. Same agents. Same workflows. Zero cost.</div>
+      </div>
+      <div class="faq-item" data-delay="200">
+        <button class="faq-q">
+          Will my code or data be used for training?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">These free models operate under strict privacy guarantees. Your code stays your code. No training on your prompts, no data harvesting, no "improving our models" at your expense.</div>
+      </div>
+      <div class="faq-item" data-delay="300">
+        <button class="faq-q">
+          Can I use this in production?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Absolutely. These models are production-ready and run on infrastructure that doesn't gate on payment. Many teams use free models in production alongside paid ones — starting here means you never get an unexpected bill.</div>
+      </div>
+      <div class="faq-item" data-delay="400">
+        <button class="faq-q">
+          What if a free model goes down or gets deprecated?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">The config is just JSON. Swap in any other free model from OpenCode's available list — update one string, restart, and you're back. We designed this to be resilient by simplicity.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== FOOTER ======== -->
+<footer>
+  <div class="container">
+    <div class="footer-big">Made for people who believe <span>AI should be free.</span></div>
+    <p>oh-my-freeagent — Free Specialized Agents for OpenCode</p>
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#models">Models</a>
+      <a href="#features">Features</a>
+      <a href="#how">How-To</a>
+      <a href="#agents">Agents</a>
+      <a href="#faq">FAQ</a>
+      <a href="oh-my-freeagent.json">Download Config</a>
+    </div>
+    <p style="margin-top:24px;font-size:0.75rem;color:var(--text-dim)">No API keys. No credit cards. Just free AI.</p>
+  </div>
+</footer>
+
+<script>
+// ============================
+// Intersection Observer for scroll reveals
+// ============================
+(function(){
+  const els = document.querySelectorAll('.model-card, .feature-card, .how-step, .faq-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const delay = parseInt(entry.target.dataset.delay) || 0;
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, delay);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -40px 0px'
+  });
+  els.forEach(el => observer.observe(el));
+
+  // ============================
+  // FAQ Accordion
+  // ============================
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', function(){
+      const item = this.parentElement;
+      const isOpen = item.classList.contains('open');
+      // close all
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if(!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ============================
+  // Smooth scroll for nav links
+  // ============================
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e){
+      const id = this.getAttribute('href');
+      if(id === '#') return;
+      const el = document.querySelector(id);
+      if(el){
+        e.preventDefault();
+        el.scrollIntoView({behavior:'smooth'});
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
